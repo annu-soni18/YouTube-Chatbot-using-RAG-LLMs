@@ -1,15 +1,21 @@
+import os
 import streamlit as st
-from langchain_ollama import ChatOllama
-from langchain_ollama import OllamaEmbeddings
+
+from dotenv import load_dotenv
+from langchain_groq import ChatGroq
+from langchain_huggingface import HuggingFaceEmbeddings
+
+load_dotenv()
 
 
 @st.cache_resource
 def load_llm():
 
-    llm = ChatOllama(
-        model="llama3.2:1b",
-        temperature=0
-    )
+    llm = ChatGroq(
+    groq_api_key=os.getenv("GROQ_API_KEY"),
+    model_name="llama-3.3-70b-versatile",
+    temperature=0
+)
 
     return llm
 
@@ -17,8 +23,8 @@ def load_llm():
 @st.cache_resource
 def load_embeddings():
 
-    embeddings = OllamaEmbeddings(
-        model="nomic-embed-text"
+    embeddings = HuggingFaceEmbeddings(
+        model_name="sentence-transformers/all-MiniLM-L6-v2"
     )
 
     return embeddings

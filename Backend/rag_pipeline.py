@@ -33,8 +33,8 @@ def build_rag_chain(vector_store):
     prompt = get_prompt()
 
     retriever = vector_store.as_retriever(
-        search_type="similarity",
-        search_kwargs={"k": 2}
+        search_type="mmr",
+        search_kwargs={"k": 4}
     )
 
     rag_chain = (
