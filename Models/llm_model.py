@@ -3,7 +3,7 @@ import streamlit as st
 
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
-from langchain_huggingface import HuggingFaceEmbeddings
+
 from langchain_openai import OpenAIEmbeddings
 
 load_dotenv()
